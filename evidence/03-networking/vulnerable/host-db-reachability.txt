@@ -1,0 +1,4 @@
+COMMAND     PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+com.docke 49031 cruzer  149u  IPv6 0xedc418e52ba846f1      0t0  TCP *:3306 (LISTEN)
+
+host -> localhost:3306 : CONNECTED (database exposed on the host)

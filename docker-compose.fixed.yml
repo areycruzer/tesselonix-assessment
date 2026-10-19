@@ -1,0 +1,94 @@
+# HARDENED VARIANT — patched app image + no published database port.
+# Two changes vs docker-compose.yml:
+#   1. kanboard is built from ./kanboard-patched (security fixes applied as patches)
+#   2. mariadb no longer publishes 3306 to the host (internal routed access only)
+name: kanboard-audit-lab-fixed
+
+networks:
+  appnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.10.0/24
+  dbnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.20.0/24
+
+services:
+  router:
+    build: ./router
+    container_name: lab-router
+    cap_add: [NET_ADMIN]
+    sysctls:
+      net.ipv4.ip_forward: 1
+    networks:
+      appnet:
+        ipv4_address: 172.28.10.254
+      dbnet:
+        ipv4_address: 172.28.20.254
+
+  mariadb:
+    image: mariadb:10.11
+    container_name: lab-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: labrootpw
+      MARIADB_DATABASE: kanboard
+      MARIADB_USER: kanboard
+      MARIADB_PASSWORD: labdbpw
+    # FIX: no ports stanza — the database is reachable only via the routed
+    # internal path (appnet -> router -> dbnet), guarded by the router firewall.
+    networks:
+      dbnet:
+        ipv4_address: 172.28.20.10
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  # Return-route sidecar (same rationale as the baseline compose).
+  mariadb-route-init:
+    build: ./client
+    container_name: lab-mariadb-route
+    cap_add: [NET_ADMIN]
+    network_mode: service:mariadb
+    command: sh -c "ip route replace 172.28.10.0/24 via 172.28.20.254 dev eth0 && echo 'return route to appnet installed in mariadb netns'"
+    restart: "no"
+    depends_on: [mariadb]
+
+  kanboard:
+    build: ./kanboard-patched
+    container_name: lab-kanboard
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    # DB wiring is mounted from ./kanboard/config.php — the stock image ships an
+    # empty config.php, ignores DB_* environment variables, and would otherwise
+    # silently fall back to SQLite.
+    volumes:
+      - ./kanboard/config.php:/var/www/app/config.php:ro
+    ports:
+      - "8080:80"
+    networks:
+      appnet:
+        ipv4_address: 172.28.10.10
+
+  kanboard-route-init:
+    build: ./client
+    container_name: lab-kanboard-route
+    cap_add: [NET_ADMIN]
+    network_mode: service:kanboard
+    command: sh -c "ip route replace 172.28.20.0/24 via 172.28.10.254 dev eth0 && echo 'route to dbnet installed in kanboard netns'"
+    restart: "no"
+    depends_on: [kanboard]
+
+  client:
+    build: ./client
+    container_name: lab-client
+    cap_add: [NET_ADMIN]
+    command: sh -c "ip route replace 172.28.20.0/24 via 172.28.10.254 dev eth0; sleep infinity"
+    networks:
+      appnet:
+        ipv4_address: 172.28.10.20

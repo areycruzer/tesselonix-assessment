@@ -1,0 +1,7 @@
+# packets captured on lab-client (eth0), filter: host 172.28.10.10 and tcp port 9999
+curl exit=7 (7 = connection refused, RST received)
+
+--- tcpdump readback ---
+reading from file /tmp/tcp-refused.pcap, link-type EN10MB (Ethernet), snapshot length 262144
+18:57:03.448833 IP 172.28.10.20.47544 > 172.28.10.10.9999: Flags [S], seq 642024299, win 64240, options [mss 1460,sackOK,TS val 2355620930 ecr 0,nop,wscale 10], length 0
+18:57:03.448921 IP 172.28.10.10.9999 > 172.28.10.20.47544: Flags [R.], seq 0, ack 642024300, win 0, length 0

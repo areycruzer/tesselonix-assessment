@@ -1,0 +1,4 @@
+(kernel log not readable inside the container — dmesg requires CAP_SYSLOG,
+ which Docker does not grant the container; the drop evidence is the
+ LOG-rule packet counter delta between firewall-before.txt and
+ firewall-after.txt: the counters show the test SYNs hitting the rule.)

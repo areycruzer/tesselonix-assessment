@@ -1,0 +1,133 @@
+[
+    {
+        "Name": "kanboard-audit-lab-fixed_appnet",
+        "Id": "71216fda5e03c32651c12f65a884ec45d140dea2e874a5133d4863aeef302da5",
+        "Created": "2026-10-19T18:56:46.60454692Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.28.10.0/24",
+                    "Gateway": "172.28.10.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {
+            "com.docker.compose.config-hash": "724ec0b4006ba161ff5c817478181020f3a0e46c28174f6cfed81e566af74adc",
+            "com.docker.compose.network": "appnet",
+            "com.docker.compose.project": "kanboard-audit-lab-fixed",
+            "com.docker.compose.version": "5.5.1"
+        },
+        "Containers": {
+            "108685055b1857edf1809977fb959823ce238626f05ca6c97dda32c0c94f3c37": {
+                "Name": "lab-client",
+                "EndpointID": "9e4fb7c51c0c6d755897a17f822420c069cd8c9092ea6556794fd8f9da5f6314",
+                "MacAddress": "86:5b:06:83:18:20",
+                "IPv4Address": "172.28.10.20/24",
+                "IPv6Address": ""
+            },
+            "39df529c1ce134a6d954d96c64b5e43d3588b2b972e82239f794ca36d1d68d3b": {
+                "Name": "lab-kanboard",
+                "EndpointID": "f1ade32c76439e429b475eeaf76d27f2eeeb2c462183f58d0529465e3a4a0bc5",
+                "MacAddress": "fe:75:cd:7f:56:f3",
+                "IPv4Address": "172.28.10.10/24",
+                "IPv6Address": ""
+            },
+            "a012c714d194c82c42e8003063b280f25712200990f2d957ebbbedce6b84e4f5": {
+                "Name": "lab-router",
+                "EndpointID": "715267f4a51e2981d6ab5e1a152fa95f64bffc27d8fb1c69dc35edd6bf0defb7",
+                "MacAddress": "26:6b:6e:e5:b2:39",
+                "IPv4Address": "172.28.10.254/24",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.28.10.0/24": {
+                        "IPsInUse": 6,
+                        "DynamicIPsAvailable": 250
+                    }
+                }
+            }
+        }
+    },
+    {
+        "Name": "kanboard-audit-lab-fixed_dbnet",
+        "Id": "199c3fb1b9f37c74ec6e36ef4b8d623815d6574aaabb712ce188dff2032c7350",
+        "Created": "2026-10-19T18:56:46.60439717Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.28.20.0/24",
+                    "Gateway": "172.28.20.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {
+            "com.docker.compose.config-hash": "84a02fa47f364a0a310073b28f4fca5b28695766343b0d15800f7537acd8a750",
+            "com.docker.compose.network": "dbnet",
+            "com.docker.compose.project": "kanboard-audit-lab-fixed",
+            "com.docker.compose.version": "5.5.1"
+        },
+        "Containers": {
+            "30424fb67ad0beff0e04c4e3cef8a514e4dfdc364c63b26eb9e8ee85ae050101": {
+                "Name": "lab-mariadb",
+                "EndpointID": "89fec55e7ac16d0f88f21915f02f48f1b54d7dbbc4338f47f012917c1ddb0756",
+                "MacAddress": "b2:a3:e0:64:9c:4f",
+                "IPv4Address": "172.28.20.10/24",
+                "IPv6Address": ""
+            },
+            "a012c714d194c82c42e8003063b280f25712200990f2d957ebbbedce6b84e4f5": {
+                "Name": "lab-router",
+                "EndpointID": "7360fed707f671455b265b66cb656463f8e7418b4ea792757f71c78a9968a6f3",
+                "MacAddress": "f2:7d:7d:b6:25:04",
+                "IPv4Address": "172.28.20.254/24",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.28.20.0/24": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 251
+                    }
+                }
+            }
+        }
+    }
+]

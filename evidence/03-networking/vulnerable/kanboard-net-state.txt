@@ -1,0 +1,11 @@
+
+default via 172.28.10.1 dev eth0 
+172.28.10.0/24 dev eth0 scope link  src 172.28.10.10 
+172.28.20.0/24 via 172.28.10.254 dev eth0 
+
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      13/nginx: master pr
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      13/nginx: master pr
+tcp        0      0 127.0.0.11:45241        0.0.0.0:*               LISTEN      -
+udp        0      0 127.0.0.11:55730        0.0.0.0:*                           -

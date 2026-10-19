@@ -1,0 +1,8 @@
+# packets captured on lab-router (any), filter: udp port 9999 or icmp
+nc exit=0 (packet sent; router should answer ICMP port-unreachable)
+
+--- tcpdump readback ---
+reading from file /tmp/udp-unreachable.pcap, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
+Warning: interface names might be incorrect
+18:57:24.499839 eth0  In  IP 172.28.10.20.32780 > 172.28.10.254.9999: UDP, length 5
+18:57:24.499857 eth0  Out IP 172.28.10.254 > 172.28.10.20: ICMP 172.28.10.254 udp port 9999 unreachable, length 41

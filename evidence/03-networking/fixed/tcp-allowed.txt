@@ -1,0 +1,15 @@
+# packets captured on lab-client (eth0), filter: host 172.28.10.10 and tcp port 80
+HTTP 302 from 172.28.10.10:80
+
+--- tcpdump readback ---
+reading from file /tmp/tcp-allowed.pcap, link-type EN10MB (Ethernet), snapshot length 262144
+18:56:59.103192 IP 172.28.10.20.45126 > 172.28.10.10.80: Flags [S], seq 1563066108, win 64240, options [mss 1460,sackOK,TS val 2330110537 ecr 0,nop,wscale 10], length 0
+18:56:59.103231 IP 172.28.10.10.80 > 172.28.10.20.45126: Flags [S.], seq 3873269740, ack 1563066109, win 65160, options [mss 1460,sackOK,TS val 1955803565 ecr 2330110537,nop,wscale 10], length 0
+18:56:59.103242 IP 172.28.10.20.45126 > 172.28.10.10.80: Flags [.], ack 1, win 63, options [nop,nop,TS val 2330110537 ecr 1955803565], length 0
+18:56:59.103302 IP 172.28.10.20.45126 > 172.28.10.10.80: Flags [P.], seq 1:77, ack 1, win 63, options [nop,nop,TS val 2330110537 ecr 1955803565], length 76: HTTP: GET / HTTP/1.1
+18:56:59.103310 IP 172.28.10.10.80 > 172.28.10.20.45126: Flags [.], ack 77, win 64, options [nop,nop,TS val 1955803565 ecr 2330110537], length 0
+18:56:59.111762 IP 172.28.10.10.80 > 172.28.10.20.45126: Flags [P.], seq 1:661, ack 77, win 64, options [nop,nop,TS val 1955803574 ecr 2330110537], length 660: HTTP: HTTP/1.1 302 Found
+18:56:59.111775 IP 172.28.10.20.45126 > 172.28.10.10.80: Flags [.], ack 661, win 63, options [nop,nop,TS val 2330110546 ecr 1955803574], length 0
+18:56:59.111967 IP 172.28.10.20.45126 > 172.28.10.10.80: Flags [F.], seq 77, ack 661, win 63, options [nop,nop,TS val 2330110546 ecr 1955803574], length 0
+18:56:59.112015 IP 172.28.10.10.80 > 172.28.10.20.45126: Flags [F.], seq 661, ack 78, win 64, options [nop,nop,TS val 1955803574 ecr 2330110546], length 0
+18:56:59.112019 IP 172.28.10.20.45126 > 172.28.10.10.80: Flags [.], ack 662, win 63, options [nop,nop,TS val 2330110546 ecr 1955803574], length 0

@@ -1,0 +1,11 @@
+# packets captured on lab-router (any), filter: port 53
+172.28.10.10
+172.28.20.10
+
+--- tcpdump readback ---
+18:57:20.130850 eth0  In  IP 172.28.10.20.53389 > 172.28.10.254.53: 45158+ [1au] A? kanboard.lab.internal. (62)
+18:57:20.133796 eth0  Out IP 172.28.10.254.53 > 172.28.10.20.53389: 45158* 1/0/1 A 172.28.10.10 (66)
+18:57:20.150613 eth0  In  IP 172.28.10.20.51907 > 172.28.10.254.53: 12246+ [1au] A? mariadb.lab.internal. (61)
+18:57:20.150693 eth0  Out IP 172.28.10.254.53 > 172.28.10.20.51907: 12246* 1/0/1 A 172.28.20.10 (65)
+reading from file /tmp/udp-dns.pcap, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
+Warning: interface names might be incorrect

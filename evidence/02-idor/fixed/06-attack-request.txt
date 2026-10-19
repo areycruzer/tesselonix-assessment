@@ -1,0 +1,3 @@
+ATTACK (IDOR): GET /?controller=UserViewController&action=removeSession&user_id=3&id=1&csrf_token=f442e07a3bcb4250ff8a648866cdd684aea77ab09b9d801486a6af2f9f767dd7
+
+Sent by alice, an ordinary app-user, with her own session, her own CSRF token and her own user_id (satisfies getUser()). Only the id parameter points at bob's RememberMe session row (1).

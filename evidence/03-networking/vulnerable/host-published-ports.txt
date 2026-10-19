@@ -1,0 +1,12 @@
+NAMES          IMAGE                       PORTS                                         STATUS
+lab-kanboard   kanboard/kanboard:v1.2.44   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp       Up 3 seconds
+lab-mariadb    mariadb:10.11               0.0.0.0:3306->3306/tcp, [::]:3306->3306/tcp   Up 10 seconds (healthy)
+lab-router     kanboard-audit-lab-router                                                 Up 10 seconds
+lab-client     kanboard-audit-lab-client                                                 Up 10 seconds
+
+--- docker port lab-mariadb ---
+3306/tcp -> 0.0.0.0:3306
+3306/tcp -> [::]:3306
+--- docker port lab-kanboard ---
+80/tcp -> 0.0.0.0:8080
+80/tcp -> [::]:8080

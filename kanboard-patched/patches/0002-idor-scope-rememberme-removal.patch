@@ -1,0 +1,49 @@
+# Scope RememberMe session removal to its owner — sanitized from upstream commit
+# 928c68aa2b7c00092dd71084d329b912e229f3d1 (Frédéric Guillot, 2026-06-04).
+# CVE-2026-56774 / GHSA-vvjm-mjq4-27c8: UserViewController::removeSession passed an
+# unvalidated session id straight to RememberMeSessionModel::remove, letting any
+# authenticated user delete other users' persistent login sessions.
+diff --git a/app/Controller/UserViewController.php b/app/Controller/UserViewController.php
+--- a/app/Controller/UserViewController.php
++++ b/app/Controller/UserViewController.php
+@@ -128,7 +128,7 @@
+     {
+         $this->checkCSRFParam();
+         $user = $this->getUser();
+-        $this->rememberMeSessionModel->remove($this->request->getIntegerParam('id'));
++        $this->rememberMeSessionModel->remove($this->request->getIntegerParam('id'), $user['id']);
+ 
+         if ($this->request->isAjax()) {
+             $this->sessions();
+diff --git a/app/Model/RememberMeSessionModel.php b/app/Model/RememberMeSessionModel.php
+--- a/app/Model/RememberMeSessionModel.php
++++ b/app/Model/RememberMeSessionModel.php
+@@ -104,13 +104,15 @@
+      *
+      * @access public
+      * @param  integer  $session_id   Session id
++     * @param  integer  $user_id      User id
+      * @return mixed
+      */
+-    public function remove($session_id)
++    public function remove($session_id, $user_id)
+     {
+         return $this->db
+             ->table(self::TABLE)
+             ->eq('id', $session_id)
++            ->eq('user_id', $user_id)
+             ->remove();
+     }
+ 
+diff --git a/app/Subscriber/AuthSubscriber.php b/app/Subscriber/AuthSubscriber.php
+--- a/app/Subscriber/AuthSubscriber.php
++++ b/app/Subscriber/AuthSubscriber.php
+@@ -79,7 +79,7 @@
+             $session = $this->rememberMeSessionModel->find($credentials['token'], $credentials['sequence']);
+ 
+             if (! empty($session)) {
+-                $this->rememberMeSessionModel->remove($session['id']);
++                $this->rememberMeSessionModel->remove($session['id'], $session['user_id']);
+             }
+ 
+             $this->rememberMeCookie->remove();

@@ -1,0 +1,14 @@
+Starting Nmap 7.94 ( https://nmap.org ) at 2026-10-19 18:56 UTC
+Nmap scan report for 172.28.10.254
+Host is up (0.000070s latency).
+
+PORT     STATE  SERVICE
+53/udp   open   domain
+123/udp  closed ntp
+161/udp  closed snmp
+514/udp  closed syslog
+5353/udp closed zeroconf
+9999/udp closed distinct
+MAC Address: 96:89:3D:68:61:90 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.27 seconds

@@ -1,0 +1,2 @@
+CONTROL (legitimate): GET /?controller=UserViewController&action=removeSession&user_id=3&id=2&csrf_token=805a43978528ee74c9e50df7154ce5d7d8a7b83d6d9e10135d21e604200ae8b0
+alice removes her own RememberMe session — the same UI the app provides.

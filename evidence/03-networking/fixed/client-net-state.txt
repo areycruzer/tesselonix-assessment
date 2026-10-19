@@ -1,0 +1,19 @@
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+tunl0@NONE       DOWN           
+gre0@NONE        DOWN           
+gretap0@NONE     DOWN           
+erspan0@NONE     DOWN           
+ip_vti0@NONE     DOWN           
+ip6_vti0@NONE    DOWN           
+sit0@NONE        DOWN           
+ip6tnl0@NONE     DOWN           
+ip6gre0@NONE     DOWN           
+eth0@if267       UP             172.28.10.20/24 
+
+default via 172.28.10.1 dev eth0 
+172.28.10.0/24 dev eth0 proto kernel scope link src 172.28.10.20 
+172.28.20.0/24 via 172.28.10.254 dev eth0 
+
+Netid State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
+udp   UNCONN 0      0         127.0.0.11:57095      0.0.0.0:*          
+tcp   LISTEN 0      4096      127.0.0.11:33321      0.0.0.0:*          

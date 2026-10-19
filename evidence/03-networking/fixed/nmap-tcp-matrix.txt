@@ -1,0 +1,56 @@
+Starting Nmap 7.94 ( https://nmap.org ) at 2026-10-19 18:57 UTC
+Nmap scan report for 172.28.10.10
+Host is up (0.0000070s latency).
+
+PORT     STATE  SERVICE
+22/tcp   closed ssh
+53/tcp   closed domain
+80/tcp   open   http
+443/tcp  open   https
+3306/tcp closed mysql
+8060/tcp closed aero
+8080/tcp closed http-proxy
+9999/tcp closed abyss
+MAC Address: FE:75:CD:7F:56:F3 (Unknown)
+
+Nmap scan report for 172.28.10.254
+Host is up (0.000018s latency).
+
+PORT     STATE  SERVICE
+22/tcp   closed ssh
+53/tcp   open   domain
+80/tcp   closed http
+443/tcp  closed https
+3306/tcp closed mysql
+8060/tcp closed aero
+8080/tcp closed http-proxy
+9999/tcp closed abyss
+MAC Address: 26:6B:6E:E5:B2:39 (Unknown)
+
+Nmap scan report for 172.28.20.10
+Host is up.
+
+PORT     STATE    SERVICE
+22/tcp   filtered ssh
+53/tcp   filtered domain
+80/tcp   filtered http
+443/tcp  filtered https
+3306/tcp filtered mysql
+8060/tcp filtered aero
+8080/tcp filtered http-proxy
+9999/tcp filtered abyss
+
+Nmap scan report for 172.28.20.254
+Host is up (0.000020s latency).
+
+PORT     STATE  SERVICE
+22/tcp   closed ssh
+53/tcp   closed domain
+80/tcp   closed http
+443/tcp  closed https
+3306/tcp closed mysql
+8060/tcp closed aero
+8080/tcp closed http-proxy
+9999/tcp closed abyss
+
+Nmap done: 4 IP addresses (4 hosts up) scanned in 1.33 seconds

